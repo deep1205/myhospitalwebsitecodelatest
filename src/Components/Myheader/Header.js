@@ -87,7 +87,7 @@ function Navbar({ location }) {
               to="/login"
               onClick={() => {
                 localStorage.removeItem("token");
-                window.location.reload();
+                
               }}
               style={{ cursor: "pointer", color: "white" }}
             >

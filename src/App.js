@@ -50,12 +50,12 @@ const App = () => {
             component={Profile}
             meta={{ auth: true }}
           />
-          {localStorage.getItem("token") == null ? (
-            <Route exact path="/login">
+          {localStorage.getItem("token") !== null ? (
+            <Route exact path="/#">
               <Login />
             </Route>
           ) : (
-            <Route exact path="/#">
+            <Route exact path="/login">
               <Login />
             </Route>
           )}

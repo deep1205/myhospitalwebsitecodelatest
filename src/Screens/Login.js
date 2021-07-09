@@ -52,6 +52,10 @@ const Login = () => {
 
       .then(async (res) => {
         localStorage.setItem("token", res["data"]["token"]);
+       localStorage.setItem("miniemail", res["data"]["hospital"]["email"]);
+        localStorage.setItem("miniemail", res["data"]["hospital"]["userType"]);
+        
+        
         toast.success("Login Sucessfully");
         await delay(1000);
         console.log("Login SuccessFully");
@@ -89,7 +93,7 @@ const Login = () => {
                 </div>
               </div>
             </div>
-            <form className="login-form" method="PUT" onSubmit={handleSubmit} >
+            <form className="login-form" method="PUT" onSubmit={handleSubmit}   >
               <input
                 name="hemail"
                 type="text"

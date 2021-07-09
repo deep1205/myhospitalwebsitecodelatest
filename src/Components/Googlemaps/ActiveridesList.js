@@ -13,7 +13,6 @@ import MaterialTable from "material-table";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import useWindowDimensions from "./getWindowDimensions";
 import styles from "../../css/Request.module.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import CustomDatePicker from "./CustomDatePicker";
 import Fab from "@material-ui/core/Fab";
 import ListIcon from "@material-ui/icons/List";

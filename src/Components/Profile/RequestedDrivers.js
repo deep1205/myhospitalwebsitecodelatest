@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Table } from "reactstrap";
 import { Profiler } from "react";
-import "../../css/Profile.css";
+import "../../css/Profile.css"
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 
 const RequestedDrivers = () => {
   const [reqDrivers, setReqDrivers] = useState([]);
@@ -57,21 +63,21 @@ const RequestedDrivers = () => {
         Drivers Request
       </h4>
       <div className="reqdriver">
-        <Table hover responsive>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Mobile</th>
-              <th>Invitation</th>
-            </tr>
-          </thead>
-          <tbody>
-            {reqDrivers.map((driver, id) => {
-              return (
-                <tr key={id}>
-                  <td>{driver.name}</td>
-                  <td>{driver.mobileNo}</td>
-                  <td>
+        <TableContainer component={Paper}>
+          <Table size="small" aria-label="a dense table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Name</TableCell>
+                <TableCell align="center">Mobile</TableCell>
+                <TableCell align="center">Invitation</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {reqDrivers.map((driver, id) => (
+                <TableRow key={id}>
+                  <TableCell align="center">{driver.name} </TableCell>
+                  <TableCell align="center">{driver.mobileNo}</TableCell>
+                  <TableCell align="center">
                     <button
                       className="acceptbutton"
                       onClick={() => addDriver(driver._id)}
@@ -85,12 +91,12 @@ const RequestedDrivers = () => {
                     >
                       Reject
                     </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
     </div>
   );

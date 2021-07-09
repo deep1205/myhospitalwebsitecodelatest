@@ -1,5 +1,6 @@
 import React from 'react';
 import "./App.css"
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Footer from "./Components/Footer/Footer.js"
 import Homepage from "../src/Screens/Homepage"
@@ -11,6 +12,7 @@ import { GuardProvider, GuardedRoute } from "react-router-guards";
 import Signup from "./Screens/Signup"
 const requireLogin = (to, from, next) => {
   if (to.meta.auth) {
+     console.log(localStorage.getItem("miniemail"));
     if (localStorage.getItem("token") != null) {
       next();
     }
@@ -42,7 +44,7 @@ const App = () => {
             path="/track"
             exact
             component={Track}
-            meta={{ auth: true }}
+            meta={{ auth: false }}
           />
           <GuardedRoute
             path="/profile"

@@ -83,18 +83,19 @@ function Navbar({ location }) {
           )}
 
           {localStorage.getItem("token") !== null ? (
-            <Link
-              to="/login"
+            <a
+              href="/login"
               onClick={() => {
                 localStorage.removeItem("token");
+                
                 
               }}
               style={{ cursor: "pointer", color: "white" }}
             >
               Logout
-            </Link>
+            </a>
           ) : (
-            <Link to="/signup">Signup</Link>
+            <a href="/signup">Signup</a>
           )}
 
           {location === "home" && <div className="animation start-home" />}

@@ -225,6 +225,7 @@ const Activerideslist = () => {
 
         <CloseIcon
           style={{
+            cursor: "pointer",
             borderRadius: "0",
             position: "absolute",
             left: window.screen.width > 800 ? "430px" : "300px",
@@ -232,7 +233,6 @@ const Activerideslist = () => {
             zIndex: "10",
             tableStyle,
           }}
-          
           onClick={() => setTableOpen(false)}
         />
       </div>

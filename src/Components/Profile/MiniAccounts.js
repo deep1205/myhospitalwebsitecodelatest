@@ -30,7 +30,6 @@ const MiniAccounts = () => {
   }, [accounts]);
 
   console.log(accounts);
-
   const [email, setEmail] = useState("");
   const [userType, setUserType] = useState("mini");
   const [password, setPassword] = useState("");

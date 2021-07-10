@@ -3,6 +3,7 @@
 .driverprofile{
     font-family: 'Roboto', sans-serif;
     padding: 2rem 0;
+    margin: 0 2rem;
 }
 .acceptbutton{
     border-radius: 0.5rem ;
@@ -90,5 +91,3 @@
     margin: 0.2rem 0;
 }
 
-
-/* #a116ef, #390999 */

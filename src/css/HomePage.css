@@ -354,7 +354,7 @@ a:hover{
 } 
 @media screen and (max-width:450px) {
    .formp{
-    margin:200px -62px 0 10px;
+    margin:200px -62px 0 40px;
      
     width: 320px;
     
@@ -378,7 +378,7 @@ a:hover{
 } 
 @media screen and (max-width:360px) {
    .formp{
-    margin:191px -84px 10px 0px;
+    margin:191px -69px 10px 0px;
      
     width: 320px;
     

@@ -74,6 +74,7 @@ const Login = () => {
     <>
       <Header location="profile" />
       <div class=" fadeInDown">
+       
         <div className="login-page" style={{ position: "relative" }}>
           <div className="form">
             <div className="login">
@@ -93,7 +94,7 @@ const Login = () => {
                 </div>
               </div>
             </div>
-            <form className="login-form" method="PUT" onSubmit={handleSubmit}   >
+            <form className="login-form" method="PUT" onSubmit={handleSubmit}>
               <input
                 name="hemail"
                 type="text"

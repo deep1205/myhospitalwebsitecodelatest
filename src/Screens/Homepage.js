@@ -12,7 +12,7 @@ import MyGoogleMap from "../Components/Googlemaps/HomepageGoogleMaps";
 import "../css/HomePage.css";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-
+import Horizontalscrolltext from "../Components/Horizontalscrollingtext"
 const delay = require("delay");
 const Homepage = (props) => {
   let btnref = useRef();
@@ -166,9 +166,11 @@ const Homepage = (props) => {
   return (
     <>
       <Header location="home" />
+
       <br />
 
       <div class="fadeInDown">
+        <Horizontalscrolltext />
         <div
           id="googlemaphomepagekiposition"
           className="main-wrapper"
@@ -195,7 +197,10 @@ const Homepage = (props) => {
               <div className="loginp">
                 <div className="loginp-header">
                   <p id="myformheadertextp">Patient Form</p>
-                  <div id="myformheadertext1p" style={{ marginTop: "-19px",fontWeight:"bold" }}>
+                  <div
+                    id="myformheadertext1p"
+                    style={{ marginTop: "-19px", fontWeight: "bold" }}
+                  >
                     <p> Welcome to Priority Pulse</p>
                     <p style={{ margin: "-18px 0 11px 0" }}>
                       Your Pulse,Our Priority
@@ -228,7 +233,7 @@ const Homepage = (props) => {
                   id="number"
                   onChange={handleInputs}
                 />
-                
+
                 <input
                   name="guardianNo"
                   type="text"

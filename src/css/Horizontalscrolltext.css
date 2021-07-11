@@ -1,0 +1,25 @@
+ .langs {
+  color:black;
+  text-transform:uppercase;
+  font-family:'Montserrat';
+  font-size:20px;
+  font-weight: 500;
+  display: inline-block;
+  white-space: nowrap;
+  animation: floatText 15s infinite linear;
+  transform: translateX(100%);
+
+}
+
+
+ .langs:hover  {
+  animation-play-state: paused;
+    animation-delay:0s;
+}
+
+
+@keyframes floatText  {
+  to {
+    transform: translateX(-100%);
+  }
+}

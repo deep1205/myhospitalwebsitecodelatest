@@ -53,7 +53,7 @@ function Navbar({ location }) {
         </div>
         <nav className={classna}>
           {localStorage.getItem("token") !== null ? (
-            <a href= "/home">Home</a>
+            <a href="/home">Home</a>
           ) : (
             <a style={{ visibility: "hidden" }} href="/home">
               Home
@@ -87,11 +87,15 @@ function Navbar({ location }) {
               onClick={() => {
                 localStorage.removeItem("token");
               }}
-            
               style={{ cursor: "pointer", color: "white" }}
             >
               <div>
-                <ExitToAppTwoToneIcon fontSize="large"/>
+                
+                <ExitToAppTwoToneIcon
+                  id="signout"
+                  value="signout"
+                  fontSize="large"
+                />
               </div>
             </a>
           ) : (

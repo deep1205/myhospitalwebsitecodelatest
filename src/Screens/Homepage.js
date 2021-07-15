@@ -5,7 +5,8 @@ import React, {
   useContext,
   useRef,
 } from "react";
-import Marquee from "react-fast-marquee";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Fade from "@material-ui/core/Fade";
 import { useHistory } from "react-router-dom";
 import Header from "../Components/Myheader/Header";
 import Button from "@material-ui/core/Button";
@@ -17,9 +18,11 @@ import axios from "axios";
 import Horizontalscrolltext from "../Components/Horizontalscrollingtext"
 const delay = require("delay");
 const Homepage = (props) => {
+
   let btnref = useRef();
 const history=useHistory();
-  const [disable, setDisable] = useState(false);
+const [loading, setLoading] = React.useState(0);
+ 
   const map = createRef();
   const [drivers, setDriver] = useState([]);
   const [guardianCoordinates, setguardianCoordinates] = useState([]);
@@ -40,6 +43,7 @@ const history=useHistory();
         // setDriver([...drivers, { name: data.name, id: data._id }])
       })
       .catch((err) => {
+        
         console.log(err);
       });
 
@@ -115,15 +119,11 @@ const history=useHistory();
     }
   };
 
-  const onBtnClick = (e) => {
-    setDisable(true);
-    if (btnref.current) {
-      btnref.current.setAttribute("disabled", "true");
-    }
-  };
+  
   const handleSubmit = (e) => {
+     setLoading(1);
     e.preventDefault();
-    onBtnClick();
+    
     const newUser = {
       name: user.name,
       pcase: user.pcase,
@@ -145,20 +145,25 @@ const history=useHistory();
       })
       .then(async (res) => {
         toast.success("Form Submitted Sucessfully");
-        await delay(1000);
+        await delay(500);
         console.log("Form Submitted SuccessFully");
-        window.location.reload();
+        
+          
+            window.location.reload();
+              setLoading(0);
+              document.getElementById("mybutton").style.display =
+                "inline-block";
         console.log(res);
       })
-      .catch((err) => {
+      .catch(async (err) => {
+         await delay(500);
+         setLoading(0);
+         document.getElementById("mybutton").style.display = "inline-block";
         console.log(err.status);
         console.log(err.error);
         toast.error("Please fill Form correctly");
         console.log(`Please Fill form Correctly`);
-        setDisable(false);
-        if (btnref.current) {
-          btnref.current.setAttribute("disabled", "false");
-        }
+        
       });
   };
 
@@ -280,17 +285,29 @@ const history=useHistory();
                     return <option value={value.phoneNumber}></option>;
                   })}
                 </datalist>
-                {!disable && (
-                  <Button
-                    ref={btnref}
-                    style={{ margin: "10px 0 0px 0", fontSize: "1rem" }}
-                    variant="contained"
-                    onClick={handleSubmit}
-                    
+                <div>
+                  <Fade
+                    in={loading}
+                    style={{
+                      transitionDelay: !loading ? "800ms" : "0ms",
+                    }}
+                    unmountOnExit
                   >
-                    Submit
-                  </Button>
-                )}
+                    <CircularProgress />
+                  </Fade>
+                </div>
+                <Button
+                id="mybutton"
+                  ref={btnref}
+                  style={{ margin: "10px 0 0px 0", fontSize: "1rem" }}
+                  variant="contained"
+                  onClick={handleSubmit}
+                >
+                  {loading
+                    ? (document.getElementById("mybutton").style.display =
+                        "none")
+                    : "Submit"}
+                </Button>
               </form>
             </div>
           </div>

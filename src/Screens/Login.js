@@ -5,11 +5,15 @@ import Header from "../Components/Myheader/Header.js";
 import Button from "@material-ui/core/Button";
 import { toast } from "react-toastify";
 import axios from "axios";
+import Fade from "@material-ui/core/Fade";
+
 import "../css/Login.css";
 import Slideshow from "../Components/Slider"
 import i2 from "../images/i2.jpg";
 import i3 from "../images/i3.jpg";
 import i5 from "../images/i5.jpg";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
 import "react-toastify/dist/ReactToastify.css";
 const delay = require("delay");
 const tutorialSteps = [
@@ -30,6 +34,10 @@ const tutorialSteps = [
 
 const Login = () => {
   const history = useHistory();
+  
+  
+  const [loading, setLoading] = React.useState(0);
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -57,27 +65,38 @@ const Login = () => {
         
         
         toast.success("Login Sucessfully");
-        await delay(1000);
+        await delay(500);
         console.log("Login SuccessFully");
         console.log(res);
-           window.location.reload();
+       setLoading(0);
+       document.getElementById("mybutton").style.display = "inline-block";
         history.push("/home");
 
         
         
       })
-      .catch((err) => {
+      .catch(async (err) => {
+        await delay(500);
+         setLoading(0);
+         document.getElementById('mybutton').style.display='inline-block';
         console.log(err.error);
         toast.error("Invalid Credentials");
         console.log(`Invalid Details`);
+     
       });
   };
+
+  
+  const handleClickbutton=()=>{
+    setLoading(1);
+  }
+ 
+
 
   return (
     <>
       <Header location="profile" />
       <div class=" fadeInDown">
-       
         <div className="login-page" style={{ position: "relative" }}>
           <div className="form">
             <div className="login">
@@ -111,9 +130,37 @@ const Login = () => {
                 placeholder="password"
                 onChange={handleInputs}
               />
-              <Button name="signin" variant="contained" type="submit">
-                Sign in
-              </Button>
+              <div>
+                <Fade
+                  in={loading}
+                  style={{
+                    transitionDelay: !loading ? "800ms" : "0ms",
+                  }}
+                  unmountOnExit
+                >
+                  <CircularProgress  fontSize="small" />
+                  
+                    
+                  
+                </Fade>
+              </div>
+             
+              
+                
+                   <Button
+                   id="mybutton"
+                  name="signin"
+                  onClick={handleClickbutton}
+                  variant="contained"
+                  type="submit"
+                >
+                {loading ? document.getElementById('mybutton').style.display='none':"Sign in"}
+                </Button>
+
+                
+              
+               
+            
             </form>
           </div>
         </div>

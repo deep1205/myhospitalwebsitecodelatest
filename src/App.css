@@ -1,5 +1,12 @@
 
-
+html,body{
+    
+    overflow-x: hidden;
+    width:100vw
+}
 ::-webkit-scrollbar {
 display: none;
+visibility: none;
+
+
 }

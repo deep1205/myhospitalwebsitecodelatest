@@ -1,25 +1,47 @@
  .langs {
   color:black;
-  text-transform:uppercase;
   font-family:'Montserrat';
-  font-size:20px;
-  font-weight: 500;
-  display: inline-block;
-  white-space: nowrap;
-  animation: floatText 15s infinite linear;
-  transform: translateX(100%);
+  font-size:19px;
+  font-weight: 400;
+  animation: floatText linear 10s  infinite;
+  scroll-behavior: smooth;
+  text-overflow: hidden;
+  min-width: fit-content;
+  width: -webkit-fill-available;
+  
+  
+ 
+    
+   
+  
 
 }
 
 
  .langs:hover  {
-  animation-play-state: paused;
-    animation-delay:0s;
+  animation-play-state:paused;
+  color:red;
+
+    
 }
 
 
 @keyframes floatText  {
-  to {
-    transform: translateX(-100%);
-  }
+ 0%{
+   transform: translateX(100%);
+   opacity: 0.4;
+ }
+ 25%{
+  
+   opacity: 1;
+ }
+ 75%{
+   
+   opacity: 1;
+ }
+ 100%{
+   transform: translateX(-20%);
+   opacity: 0;
+ }
+  
 }

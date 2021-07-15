@@ -60,7 +60,9 @@ const Login = () => {
         await delay(1000);
         console.log("Login SuccessFully");
         console.log(res);
+
         history.push("/home");
+        
         
       })
       .catch((err) => {

@@ -7,22 +7,17 @@ const Horizontalscrollingtext = () => {
       <div>
         <div
           style={{
-            backgroundColor: "orangered",
+            backgroundColor: "#FAFAD2",
             margin: "-10px 0 20px 0",
-            padding: "2px",
-            
+            padding: "3px 0",
             cursor: "pointer",
           }}
           onClick={() => {
             history.push("/home");
           }}
         >
-          <div class="langs">
-            <ul>
-              Sudeep Booked an Ambulance !! || Deepesh Booked an Ambulance !! ||
-              Vaibhav Booked an Ambulance !! || Harsh Booked an Ambulance !!
-              || Harish Booked an Ambulance !! ||
-            </ul>
+          <div className="langs">
+            <span>Harish Booked an Ambulance,Allot Driver!!</span>
           </div>
         </div>
       </div>

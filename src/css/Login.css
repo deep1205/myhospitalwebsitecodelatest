@@ -1,4 +1,39 @@
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .html{
   scroll-behavior: smooth;
   
@@ -6,7 +41,7 @@
 /* Simple CSS3 Fade-in-down Animation */
 .fadeInDown {
   position: relative;
-  
+
   -webkit-animation-name: fadeInDown;
   animation-name: fadeInDown;
   -webkit-animation-duration: 2s;

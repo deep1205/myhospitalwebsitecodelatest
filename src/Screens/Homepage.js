@@ -5,6 +5,8 @@ import React, {
   useContext,
   useRef,
 } from "react";
+import Marquee from "react-fast-marquee";
+import { useHistory } from "react-router-dom";
 import Header from "../Components/Myheader/Header";
 import Button from "@material-ui/core/Button";
 import { toast } from "react-toastify";
@@ -16,7 +18,7 @@ import Horizontalscrolltext from "../Components/Horizontalscrollingtext"
 const delay = require("delay");
 const Homepage = (props) => {
   let btnref = useRef();
-
+const history=useHistory();
   const [disable, setDisable] = useState(false);
   const map = createRef();
   const [drivers, setDriver] = useState([]);
@@ -163,6 +165,7 @@ const Homepage = (props) => {
   const sendlocationdata = () => {
     toast.warn("Location send Successfully");
   };
+  
   return (
     <>
       <Header location="home" />
@@ -170,7 +173,10 @@ const Homepage = (props) => {
       <br />
 
       <div class="fadeInDown">
-        <Horizontalscrolltext />
+        <div style={{ margin: "-10px 0 20px 0px" }}>
+          <Horizontalscrolltext />
+        </div>
+
         <div
           id="googlemaphomepagekiposition"
           className="main-wrapper"
@@ -280,6 +286,7 @@ const Homepage = (props) => {
                     style={{ margin: "10px 0 0px 0", fontSize: "1rem" }}
                     variant="contained"
                     onClick={handleSubmit}
+                    
                   >
                     Submit
                   </Button>

@@ -32,14 +32,10 @@
    
 
 <script>
-$(window).ready(function() {
-//Preloader
-preloaderFadeOutTime = 1;
-function hidePreloader() {
-var preloader = $('.spinner-wrapper');
-preloader.fadeOut(1000);
+$(document).ready(function() {
+window.onload = function () {
+$('.spinner-wrapper').fadeOut(500, function(){ $('#loader').remove(); } );
 }
-hidePreloader();
 });
 </script>
 

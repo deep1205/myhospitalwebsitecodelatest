@@ -18,8 +18,9 @@
     <title>React App</title>
    
   </head>
-  <body>
-   <div class="spinner-wrapper">
+   <body onload="myfunction()">
+  
+   <div id="spinner-wrapper">
 <div class="spinner">
   <div class="bounce1"></div>
   <div class="bounce2"></div>
@@ -31,13 +32,15 @@
     <div id="root"></div>
    
 
-<script>
-$(document).ready(function() {
-window.onload = function () {
-$('.spinner-wrapper').fadeOut(1000, function(){ $('.spinner-wrapper').remove(); } );
-}
-});
-</script>
+
+
+
+   <script> 
+        var preloader=document.getElementById('spinner-wrapper');
+        function myfunction(){
+            preloader.style.display='none';
+        }
+    </script>
 
   </body>
  

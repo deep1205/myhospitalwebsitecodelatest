@@ -60,8 +60,9 @@ const Login = () => {
         await delay(1000);
         console.log("Login SuccessFully");
         console.log(res);
-
+           window.location.reload();
         history.push("/home");
+
         
         
       })

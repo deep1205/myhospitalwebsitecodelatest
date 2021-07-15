@@ -8,8 +8,8 @@ left: 48%;
 }
 
 .spinner > div {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   background-color: #333;
 z-index:-9;
   border-radius: 100%;

@@ -81,6 +81,9 @@
 .miniform{
     padding: 1rem 1rem;
 }
+.miniform .input{
+    border-radius: 0.2rem;
+}
 .profilecoumn{
     border-radius: 1rem;
     background-color:#feffff;;
@@ -91,3 +94,5 @@
     margin: 0.2rem 0;
 }
 
+
+/* #a116ef, #390999 */

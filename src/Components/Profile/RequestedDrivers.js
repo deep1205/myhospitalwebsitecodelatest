@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Profiler } from "react";
-import "../../css/Profile.css"
+import "../../css/Profile.css";
+
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -9,6 +10,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { toast } from "react-toastify";
 
 const RequestedDrivers = () => {
   const [reqDrivers, setReqDrivers] = useState([]);
@@ -27,34 +29,44 @@ const RequestedDrivers = () => {
   }, [reqDrivers]);
 
   const addDriver = (e) => {
-    axios
-      .put(
-        "https://server.prioritypulse.co.in/hosp/acceptDriver",
-        { driverid: e },
-        {
-          headers: { Authorization: localStorage.getItem("token") },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (localStorage.getItem("miniShowRequestAction") === "false") {
+      toast.error("Unauthorized to accept driver request");
+    } else {
+      axios
+        .put(
+          "https://server.prioritypulse.co.in/hosp/acceptRequest",
+          { driverid: e },
+          {
+            headers: { Authorization: localStorage.getItem("token") },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          toast.success("Driver Added");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const removeDriver = (e) => {
-    axios
-      .delete("https://server.prioritypulse.co.in/hosp/rejectRequest", {
-        data: { driverid: e },
-        headers: { Authorization: localStorage.getItem("token") },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (localStorage.getItem("miniShowRequestAction") === "false") {
+      toast.error("Unauthorized to remove driver request");
+    } else {
+      axios
+        .put("https://server.prioritypulse.co.in/hosp/rejectRequest", {
+          data: { driverid: e },
+          headers: { Authorization: localStorage.getItem("token") },
+        })
+        .then((res) => {
+          console.log(res);
+          toast.success("Driver Rejected");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (

@@ -60,20 +60,87 @@ const Login = () => {
 
       .then(async (res) => {
         localStorage.setItem("token", res["data"]["token"]);
-       localStorage.setItem("miniemail", res["data"]["hospital"]["email"]);
-        localStorage.setItem("miniemail", res["data"]["hospital"]["userType"]);
-        
-        
+        localStorage.setItem("miniemail", res["data"]["hospital"]["email"]);
+        //localStorage.setItem("miniemail", res["data"]["hospital"]["userType"]);
+
+        localStorage.setItem(
+          "miniShowDriverList",
+          res["data"]["hospital"]["showDriverList"]
+        ); //done
+        localStorage.setItem(
+          "miniShowHome",
+          res["data"]["hospital"]["showHome"]
+        ); //done
+        localStorage.setItem(
+          "miniShowDriverListAction",
+          res["data"]["hospital"]["showDriverListAction"]
+        ); //done
+        localStorage.setItem(
+          "miniShowMiniAcco",
+          res["data"]["hospital"]["showMiniAcco"]
+        ); //done
+        localStorage.setItem(
+          "miniShowMiniAccoActions",
+          res["data"]["hospital"]["showMiniAccoActions"]
+        ); //done
+        localStorage.setItem(
+          "miniShowMiniAccoDelete",
+          res["data"]["hospital"]["showMiniAccoDelete"]
+        ); //done
+        localStorage.setItem(
+          "miniShowPast",
+          res["data"]["hospital"]["showPast"]
+        ); //done
+        localStorage.setItem(
+          "miniShowProfile",
+          res["data"]["hospital"]["showProfile"]
+        ); //done
+        localStorage.setItem(
+          "miniShowRequest",
+          res["data"]["hospital"]["showRequest"]
+        ); //done
+        localStorage.setItem(
+          "miniShowRequestAction",
+          res["data"]["hospital"]["showRequestAction"]
+        ); //done
+        localStorage.setItem(
+          "miniShowTrack",
+          res["data"]["hospital"]["showTrack"]
+        ); //done
+
+        if (res["data"]["hospital"]["userType"] == "admin") {
+          localStorage.setItem("miniShowDriverList", "true"); //done
+          localStorage.setItem("miniShowHome", "true"); //done
+          localStorage.setItem("miniShowDriverListAction", "true"); //done
+          localStorage.setItem("miniShowMiniAcco", "true"); //done
+          localStorage.setItem("miniShowMiniAccoActions", "true"); //done
+          localStorage.setItem("miniShowMiniAccoDelete", "true"); //done
+          localStorage.setItem("miniShowPast", "true"); //done
+          localStorage.setItem("miniShowProfile", "true"); //done
+          localStorage.setItem("miniShowRequest", "true"); //done
+          localStorage.setItem("miniShowRequestAction", "true"); //done
+          localStorage.setItem("miniShowTrack", "true"); //done
+        }
+
+        // showDriverList: true
+        // showDriverListAction: false
+        // showHome: true
+        // showMiniAcco: false
+        // showMiniAccoActions: false
+        // showMiniAccoDelete: false
+        // showPast: false
+        // showProfile: true
+        // showRequest: true
+        // showRequestAction: true
+        // showTrack: true
+
         toast.success("Login Sucessfully");
         await delay(500);
-        console.log("Login SuccessFully");
+        
         console.log(res);
-       setLoading(0);
-       document.getElementById("mybutton").style.display = "inline-block";
+        setLoading(0);
+        document.getElementById("mybutton").style.display = "inline-block";
         history.push("/home");
-
-        
-        
       })
       .catch(async (err) => {
         await delay(500);

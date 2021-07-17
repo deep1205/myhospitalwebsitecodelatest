@@ -8,6 +8,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { toast } from "react-toastify";
 
 const DriversList = () => {
   const [drivers, setDrivers] = useState([]);
@@ -18,6 +19,7 @@ const DriversList = () => {
         headers: { Authorization: localStorage.getItem("token") },
       })
       .then((res) => {
+        //console.log(res);
         setDrivers(res.data);
       })
       .catch((err) => {
@@ -26,20 +28,24 @@ const DriversList = () => {
   }, [drivers]);
 
   const removeDriver = (e) => {
-    axios
-      .put(
-        "https://server.prioritypulse.co.in/hosp/reverseDriver",
-        { driverid: e },
-        {
-          headers: { Authorization: localStorage.getItem("token") },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (localStorage.getItem("miniShowDriverListAction") == "false") {
+      toast.error("Unauthorized to delete driver");
+    } else {
+      axios
+        .put(
+          "https://server.prioritypulse.co.in/hosp/reverseDriver",
+          { driverid: e },
+          {
+            headers: { Authorization: localStorage.getItem("token") },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (

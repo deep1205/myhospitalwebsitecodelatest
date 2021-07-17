@@ -5,7 +5,6 @@ const Signup = () => {
   return (
     <div>
       <Header location="login"/>
-    
       <Whychooseus/>
     </div>
   )

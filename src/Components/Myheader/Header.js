@@ -89,14 +89,14 @@ function Navbar({ location }) {
               }}
               style={{ cursor: "pointer", color: "white" }}
             >
-              <div>
-                
-                <ExitToAppTwoToneIcon
+              
+              
+                {<ExitToAppTwoToneIcon
                   id="signout"
                   value="signout"
                   fontSize="large"
-                />
-              </div>
+                />}
+             
             </a>
           ) : (
             <a href="/signup">Signup</a>

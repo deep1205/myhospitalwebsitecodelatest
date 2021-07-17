@@ -7,7 +7,7 @@ const Horizontalscrollingtext = () => {
       <div>
         <div
           style={{
-            backgroundColor: "	#FFE4B5",
+            backgroundColor: "#ffa95bd9",
             margin: "-10px 0 20px 0",
             padding: "3px 0",
             cursor: "pointer",

@@ -178,7 +178,7 @@ const Activerideslist = () => {
           position: "absolute",
           borderRadius: "0px 30px 30px 0px",
           color: "white",
-          backgroundColor: "black",
+          backgroundColor: "#3a68dade",
         }}
         variant="extended"
         color="primary"
@@ -226,7 +226,7 @@ const Activerideslist = () => {
 
         <CloseIcon
           style={{
-            cursor:'pointer',
+            cursor: "pointer",
             borderRadius: "0",
             position: "absolute",
             left: window.screen.width > 800 ? "430px" : "300px",
@@ -234,7 +234,6 @@ const Activerideslist = () => {
             zIndex: "10",
             tableStyle,
           }}
-          
           onClick={() => {
             setTableOpen(false);
             setButton(true);

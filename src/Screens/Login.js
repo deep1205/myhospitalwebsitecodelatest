@@ -5,7 +5,7 @@ import Header from "../Components/Myheader/Header.js";
 import Button from "@material-ui/core/Button";
 import { toast } from "react-toastify";
 import axios from "axios";
-import Fade from "@material-ui/core/Fade";
+
 
 import "../css/Login.css";
 import Slideshow from "../Components/Slider"
@@ -13,7 +13,7 @@ import i2 from "../images/i2.jpg";
 import i3 from "../images/i3.jpg";
 import i5 from "../images/i5.jpg";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
+import Fade from "@material-ui/core/Fade";
 import "react-toastify/dist/ReactToastify.css";
 const delay = require("delay");
 const tutorialSteps = [

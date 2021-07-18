@@ -52,7 +52,7 @@ function Navbar({ location }) {
           )}
         </div>
         <nav className={classna}>
-          {localStorage.getItem("token") !== null ? (
+          { ((localStorage.getItem("token") !== null) && (localStorage.getItem("miniShowHome")==="true")) ? (
             <a href="/home">Home</a>
           ) : (
             <a style={{ visibility: "hidden" }} href="/home">
@@ -60,14 +60,14 @@ function Navbar({ location }) {
             </a>
           )}
 
-          {localStorage.getItem("token") !== null ? (
+          { ((localStorage.getItem("token") !== null) && (localStorage.getItem("miniShowTrack")==="true")) ? (
             <a href="/track">TrackAmbulance</a>
           ) : (
             <a style={{ visibility: "hidden" }} href="/track">
               TrackAmbulance
             </a>
           )}
-          {localStorage.getItem("token") !== null ? (
+          { ((localStorage.getItem("token") !== null) && (localStorage.getItem("miniShowPast")==="true")) ? (
             <a href="/pastride">PastRide</a>
           ) : (
             <a style={{ visibility: "hidden" }} href="/pastride">
@@ -75,12 +75,11 @@ function Navbar({ location }) {
             </a>
           )}
 
-          {localStorage.getItem("token") !== null ? (
+          { ((localStorage.getItem("token") !== null) && (localStorage.getItem("miniShowProfile")==="true")) ? (
             <a href="/profile">Profile</a>
           ) : (
-            <a href="/login">Login</a>
+            localStorage.getItem("token")!==null ? <a style={{visibility:"hidden"}} href="/profile">Profile</a> : <a href="/login">Login</a>
           )}
-
           {localStorage.getItem("token") !== null ? (
             <a
               href="/login"
@@ -89,8 +88,6 @@ function Navbar({ location }) {
               }}
               style={{ cursor: "pointer", color: "white" }}
             >
-              
-              
                 {<ExitToAppTwoToneIcon
                   id="signout"
                   value="signout"

@@ -3,10 +3,11 @@
   font-family:'Montserrat';
   font-size:19px;
   font-weight: 400;
-  animation: floatText linear 10s  infinite;
+  animation: floatText linear 20s  infinite;
   scroll-behavior: smooth;
   text-overflow: hidden;
   min-width: fit-content;
+  margin:'2px 5px';
   width: -webkit-fill-available;
   
   
@@ -29,19 +30,12 @@
 @keyframes floatText  {
  0%{
    transform: translateX(100%);
-   opacity: 0.4;
- }
- 25%{
-  
-   opacity: 1;
- }
- 75%{
    
-   opacity: 1;
  }
+ 
  100%{
    transform: translateX(-20%);
-   opacity: 0;
+  
  }
   
 }

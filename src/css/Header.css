@@ -45,7 +45,7 @@ nav a{
   display: block;
   text-decoration: none;
   position: relative;
-  z-index: 1;
+  z-index: 0;
   display: flex;
   justify-content: center;
   margin: 25px;
@@ -59,7 +59,7 @@ nav .animation{
   position: absolute;
   height: 5px;
   bottom: 16px;
-  z-index: 0;
+  z-index: -1;
   background: gold;
   border-radius: 8px;
   transition: all .7s ease 0s;

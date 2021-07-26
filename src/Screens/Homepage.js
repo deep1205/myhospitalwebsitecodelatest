@@ -16,20 +16,23 @@ import "../css/HomePage.css";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import Horizontalscrolltext from "../Components/Horizontalscrollingtext"
+import { AppContext } from "../AppContext";
 const delay = require("delay");
-const Homepage = (props) => {
 
+const Homepage = (props) => {
   let btnref = useRef();
-const history=useHistory();
-const [loading, setLoading] = React.useState(0);
+  const history=useHistory();
+  const [loading, setLoading] = React.useState(0);
  
+  const {AssignData}=useContext(AppContext)
+  const [bookedData,setBookedData]=AssignData
+
   const map = createRef();
   const [drivers, setDriver] = useState([]);
   const [guardianCoordinates, setguardianCoordinates] = useState([]);
   const setaddressCoordinates = (coords) => {
     setguardianCoordinates(coords);
   };
-  console.log(guardianCoordinates);
   useEffect(() => {
     axios
       .get("https://server.prioritypulse.co.in/hosp/hospitalActiveDriver", {
@@ -76,7 +79,10 @@ const [loading, setLoading] = React.useState(0);
     // patientNo: "",
     guardianNo: "",
     casePrior: "",
-    pickedBy: "",
+    pickedBy: {
+      name:'',
+      _id:''
+    },
     pickUplocation: {
       coordinates: [],
     },
@@ -85,8 +91,8 @@ const [loading, setLoading] = React.useState(0);
   const [guardian, setGuardian] = useState({});
   const selectDriver = (e) => {
     for (var i = 0; i < phone.length; ++i) {
-      if (e.target.value == phone[i].phoneNumber) {
-        if (phone[i].location.coordinates.length == 0) {
+      if (e.target.value === phone[i].phoneNumber) {
+        if (phone[i].location.coordinates.length === 0) {
           toast.warn("Address Not Available");
         } else {
           setGuardian(phone[i]);
@@ -113,31 +119,46 @@ const [loading, setLoading] = React.useState(0);
     } else {
       console.log(value);
       setUser({ ...user, [name]: value });
-      if (name == "guardianNo") {
+      if (name === "guardianNo") {
         selectDriver(e);
       }
     }
   };
 
+  useEffect(()=>{
+    if(Object.keys(bookedData).length!==0){
+      setUser({
+        name:bookedData.name,
+        pcase:bookedData.pcase,
+        age:bookedData.age,
+        guardianNo:bookedData.guardianNo,
+        casePrior:bookedData.casePrior,
+        pickedBy:bookedData.pickedBy?bookedData.pickedBy:{},
+        pickUplocation:bookedData.pickUplocation
+      })
+      // if(bookedData['pickUplocation'])
+      setaddressCoordinates(bookedData['pickUplocation'].coordinates)
+    }
+  },[bookedData])
   
   const handleSubmit = (e) => {
      setLoading(1);
     e.preventDefault();
-    
     const newUser = {
-      name: user.name,
-      pcase: user.pcase,
-      age: user.age,
-      // patientNo: Number(user.patientNo),
-      guardianNo: Number(user.guardianNo),
-      casePrior: user.casePrior,
-      pickedBy: user.pickedBy._id,
-      pickUplocation: {
-        // coordinates: guardian.location?[guardian.location.coordinates[0],guardian.location.coordinates[1]]
-        // :[guardianCoordinates[0],guardianCoordinates[1]],
-        coordinates: [guardianCoordinates[0], guardianCoordinates[1]],
-      },
-    };
+        name: user.name,
+        pcase: user.pcase,
+        age: user.age,
+        // patientNo: Number(user.patientNo),
+        guardianNo: Number(user.guardianNo),
+        casePrior: user.casePrior,
+        pickedBy: user.pickedBy._id,
+        pickUplocation: {
+          // coordinates: guardian.location?[guardian.location.coordinates[0],guardian.location.coordinates[1]]
+          // :[guardianCoordinates[0],guardianCoordinates[1]],
+          coordinates: [guardianCoordinates[0], guardianCoordinates[1]],
+        },
+    } 
+    
     console.log(user.guardianNo);
     axios
       .post("https://server.prioritypulse.co.in/hosp/createRide", newUser, {
@@ -190,7 +211,8 @@ const [loading, setLoading] = React.useState(0);
           <MyGoogleMap
             ref={map}
             myusers={guardian}
-            setGuardianCoords={setaddressCoordinates}
+            setaddressCoordinates={setaddressCoordinates}
+            guardianCoordinates={guardianCoordinates}
           />
         </div>
         <Button
@@ -226,6 +248,7 @@ const [loading, setLoading] = React.useState(0);
                   placeholder="Patient Name"
                   autoComplete="on"
                   id="text"
+                  value={user.name}
                   onChange={handleInputs}
                 />
                 <input
@@ -234,6 +257,7 @@ const [loading, setLoading] = React.useState(0);
                   placeholder="Patient Case"
                   autoComplete="on"
                   id="text"
+                  value={user.pcase}
                   onChange={handleInputs}
                 />
                 <input
@@ -242,6 +266,7 @@ const [loading, setLoading] = React.useState(0);
                   placeholder="Age"
                   autoComplete="on"
                   id="number"
+                  value={user.age}
                   onChange={handleInputs}
                 />
 
@@ -252,6 +277,7 @@ const [loading, setLoading] = React.useState(0);
                   autoComplete="off"
                   id="text"
                   list="phoneList"
+                  value={user.guardianNo}
                   onChange={handleInputs}
                 />
                 <input
@@ -260,6 +286,7 @@ const [loading, setLoading] = React.useState(0);
                   placeholder="Case priority"
                   autoComplete="on"
                   id="text"
+                  value={user.casePrior}
                   onChange={handleInputs}
                 />
 
@@ -271,6 +298,7 @@ const [loading, setLoading] = React.useState(0);
                   placeholder="Driver Name"
                   onChange={handleInputs}
                   autoComplete="off"
+                  value={user.pickedBy.name}
                   onClick={() =>
                     drivers.length === 0 && toast.warn("No Driver Available")
                   }
@@ -281,9 +309,9 @@ const [loading, setLoading] = React.useState(0);
                   })}
                 </datalist>
                 <datalist id="phoneList">
-                  {phone.map((value) => {
+                  {/* {phone.map((value) => {
                     return <option value={value.phoneNumber}></option>;
-                  })}
+                  })} */}
                 </datalist>
                 <div>
                   <Fade

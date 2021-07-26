@@ -59,6 +59,7 @@ const Login = () => {
       .put("https://server.prioritypulse.co.in/auth/hospisignin", newUser)
 
       .then(async (res) => {
+        localStorage.setItem("id",res["data"]["hospital"]["_id"]);
         localStorage.setItem("token", res["data"]["token"]);
         localStorage.setItem("miniemail", res["data"]["hospital"]["email"]);
         //localStorage.setItem("miniemail", res["data"]["hospital"]["userType"]);
@@ -108,7 +109,7 @@ const Login = () => {
           res["data"]["hospital"]["showTrack"]
         ); //done
 
-        if (res["data"]["hospital"]["userType"] == "admin") {
+        if (res["data"]["hospital"]["userType"] === "admin") {
           localStorage.setItem("miniShowDriverList", "true"); //done
           localStorage.setItem("miniShowHome", "true"); //done
           localStorage.setItem("miniShowDriverListAction", "true"); //done

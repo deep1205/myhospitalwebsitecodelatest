@@ -114,12 +114,11 @@ const HomePageSideMap = (props) => {
 
      
       new window.google.maps.event.addListener(markers, "dragend", (event) => {
-        props.setGuardianCoords([
+        props.setaddressCoordinates([
           markers.getPosition().lat(),
           markers.getPosition().lng(),
         ]);
 
-        console.log("iam dragged");
         Geocode.fromLatLng(
           markers.getPosition().lat(),
           markers.getPosition().lng()
@@ -185,7 +184,7 @@ const HomePageSideMap = (props) => {
           //   mypositioncoordinates[0],
           //   mypositioncoordinates[1]
           // ]);
-          props.setGuardianCoords([
+          props.setaddressCoordinates([
             mypositioncoordinates[0],
             mypositioncoordinates[1],
           ]);
@@ -222,40 +221,35 @@ const HomePageSideMap = (props) => {
 
     
   };
-  useEffect(() => {
-    if (markers && map && props.myusers.location) {
+
+
+  useEffect(()=>{
+    if(map && props.guardianCoordinates.length>0){
       var address = "";
 
       Geocode.fromLatLng(
-        props.myusers.location.coordinates[0],
-        props.myusers.location.coordinates[1]
+        props.guardianCoordinates[0],
+        props.guardianCoordinates[1]
       ).then(
         (response) => {
           address = response.results[0].formatted_address;
-          console.log(address);
           infoWindow.setContent(address);
         },
         (error) => {
           console.error(error);
         }
       );
-
-      // map.panTo(place.geometry.location);
       infoWindow.setPosition({
-        lat: props.myusers.location.coordinates[0],
-        lng: props.myusers.location.coordinates[1],
+        lat: props.guardianCoordinates[0],
+        lng: props.guardianCoordinates[1],
       });
       infoWindow.open(map, markers);
-      markers.setPosition({
-        lat: props.myusers.location.coordinates[0],
-        lng: props.myusers.location.coordinates[1],
-      });
-      map.panTo({
-        lat: props.myusers.location.coordinates[0],
-        lng: props.myusers.location.coordinates[1],
-      });
+      map.setCenter({lat:props.guardianCoordinates[0],lng:props.guardianCoordinates[1]})
+      map.panTo({lat:props.guardianCoordinates[0],lng:props.guardianCoordinates[1]})
+      markers.setPosition({lat:props.guardianCoordinates[0],lng:props.guardianCoordinates[1]})
+
     }
-  }, [props.myusers]);
+  },[props.guardianCoordinates])
   //geolocation end
   return (
     <main>

@@ -8,6 +8,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import { ToastContainer} from "react-toastify";
 import ExitToAppTwoToneIcon from "@material-ui/icons/ExitToAppTwoTone";
 import "react-toastify/dist/ReactToastify.css";
+import Notification from './../Notification/Notification'
 function Navbar({ location }) {
   const [icons, seticons] = useState(false);
   const [classna, setclassna] = useState("slider");
@@ -98,7 +99,9 @@ function Navbar({ location }) {
           ) : (
             <a href="/signup">Signup</a>
           )}
-
+          {
+            localStorage.getItem('token')!==null && <Notification />
+          }
           {location === "home" && <div className="animation start-home" />}
           {location === "track" && <div className="animation start-user" />}
           {location === "pastride" && (

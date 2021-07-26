@@ -10,6 +10,8 @@ import Profile from "./Screens/Profile";
 import Login from "../src/Screens/Login";
 import { GuardProvider, GuardedRoute } from "react-router-guards";
 import Signup from "./Screens/Signup"
+import {AppProvider} from './AppContext'
+
 const requireLogin = (to, from, next) => {
   if (to.meta.auth) {
    
@@ -26,6 +28,7 @@ const App = () => {
 
   return (
     <>
+    <AppProvider>
       {console.log(localStorage.getItem("miniShowPast"))}
       {console.log(localStorage.getItem("miniShowPast"))}
       <GuardProvider guards={[requireLogin]}>
@@ -77,6 +80,7 @@ const App = () => {
         </Switch>
       </GuardProvider>
       <Footer />
+      </AppProvider>
     </>
   );
 }

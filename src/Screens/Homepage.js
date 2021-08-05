@@ -20,6 +20,7 @@ import { AppContext } from "../AppContext";
 const delay = require("delay");
 
 const Homepage = (props) => {
+  
   let btnref = useRef();
   const history=useHistory();
   const [loading, setLoading] = React.useState(0);
@@ -291,9 +292,10 @@ const Homepage = (props) => {
                 />
 
                 <input
+                    
                   name="pickedBy"
                   id="search"
-                  type="search"
+                  
                   list="mylist"
                   placeholder="Driver Name"
                   onChange={handleInputs}
@@ -303,7 +305,7 @@ const Homepage = (props) => {
                     drivers.length === 0 && toast.warn("No Driver Available")
                   }
                 />
-                <datalist id="mylist">
+                <datalist id="mylist" name="mylist">
                   {drivers.map((value) => {
                     return <option value={value.name}></option>;
                   })}
@@ -325,7 +327,7 @@ const Homepage = (props) => {
                   </Fade>
                 </div>
                 <Button
-                id="mybutton"
+                  id="mybutton"
                   ref={btnref}
                   style={{ margin: "10px 0 0px 0", fontSize: "1rem" }}
                   variant="contained"

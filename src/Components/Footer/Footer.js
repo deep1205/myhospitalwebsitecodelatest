@@ -8,7 +8,10 @@ import call from "../../images/ID115-1157139_contact-icon-png.png";
 import address from "../../images/Address_icon2x.png";
 import mail from "../../images/ID213-2133056_icon-mail-png-ro.png";
 function Footer() {
+  
   return (
+<>
+    
     <div className="footer">
       <img className="footer_logo" src={logo} alt="logo" />
       <div className="footer_dialog">
@@ -43,6 +46,8 @@ function Footer() {
         </div>
       </div>
     </div>
+   
+    </>
   );
 }
 

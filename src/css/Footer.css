@@ -2,13 +2,14 @@ html{
   width:100vw;
   overflow-x: hidden;
 }
+
 .footer{
   background-image: linear-gradient(to right, #a116ef, #390999);
-
   width: 100vw;
   height: 296px;
   padding-top: 20px;
   position: relative;
+  
   display: flex;
   justify-content: space-between;
 }

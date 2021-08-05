@@ -3,17 +3,14 @@
   font-family:'Montserrat';
   font-size:19px;
   font-weight: 400;
-  animation: floatText linear 20s  infinite;
+  animation: floatText linear 25s  infinite;
+
   scroll-behavior: smooth;
   text-overflow: hidden;
   min-width: fit-content;
   margin:'2px 5px';
   width: -webkit-fill-available;
-  
-  
- 
-    
-   
+
   
 
 }
@@ -21,21 +18,24 @@
 
  .langs:hover  {
   animation-play-state:paused;
+
   color:red;
 
     
 }
 
 
-@keyframes floatText  {
+@keyframes floatText {
  0%{
    transform: translateX(100%);
    
  }
- 
+
  100%{
-   transform: translateX(-20%);
-  
+   transform: translateX(-100%);
+
  }
+ 
+ 
   
 }

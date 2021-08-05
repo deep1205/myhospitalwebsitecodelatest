@@ -19,6 +19,7 @@ import ListIcon from "@material-ui/icons/List";
 import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
 import CloseIcon from "@material-ui/icons/Close";
+import driver_profile from "../../images/driverprofile.png";
 const Activerideslist = () => {
   const { height, width } = useWindowDimensions();
   const [cardOpen, setCardOpen] = useState(false);
@@ -272,6 +273,17 @@ const Activerideslist = () => {
           open={state["left"]}
           onClose={toggleDrawer("left", false)}
         >
+          <div className={styles.details}  >
+            
+              <img
+                src={driver_profile}
+                width="200px"
+                height="200px"
+                borderRadius="50%"
+                alt="driver_profile"
+              />
+           
+          </div>
           <div className={styles.details}>
             <h2>Paitent Details</h2>
             <p className={styles.names}>{rideDetail.name}</p>

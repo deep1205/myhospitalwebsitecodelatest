@@ -44,7 +44,7 @@ const Horizontalscrollingtext = () => {
             {
               rideRequest.map((ride)=>{
                 return (
-                  <span onClick={()=>handleClick(ride['rideData'])} style={{textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{ride['rideData'].name} Booked an Ambulance,Allot Driver!! &#160;</span>
+                  <span onClick={()=>handleClick(ride['rideData'])} style={{textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{ride['rideData'].name} Booked an Ambulance,Allot Driver!! &#160;  </span>
                 )
               })
             }

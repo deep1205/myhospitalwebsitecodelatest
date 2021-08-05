@@ -8,7 +8,6 @@
 
 
 
-
 #locationsendbutton{
 position: absolute;
   z-index: 999;
@@ -98,6 +97,9 @@ a:hover{
 /*---map css---*/
 #googlemaphomepagekiposition {
   width: 50%;
+  
+    z-index: -9999;
+
 }
 .main-wrapper {
   margin: 40px 0;
@@ -410,3 +412,7 @@ a:hover{
 }
 
 }
+
+
+
+

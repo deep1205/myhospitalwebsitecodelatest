@@ -19,7 +19,6 @@ import ListIcon from "@material-ui/icons/List";
 import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
 import CloseIcon from "@material-ui/icons/Close";
-import driver_profile from "../../images/driverprofile.png";
 const Activerideslist = () => {
   const { height, width } = useWindowDimensions();
   const [cardOpen, setCardOpen] = useState(false);
@@ -61,6 +60,7 @@ const Activerideslist = () => {
             driverNo: data.pickedBy
               ? data["pickedBy"].mobileNo
               : "Not Available",
+              driverProfile:data.pickedBy? data["pickedBy"].driverL:"Not Available",
             driverName: data.pickedBy ? data["pickedBy"].name : "Not Available",
             pcase: data ? data.pcase : "Not Available",
             date: data ? new Date(data["createdAt"]) : "Not Available",
@@ -133,6 +133,7 @@ const Activerideslist = () => {
       rideid: ride["rideid"],
       casePrior: ride["caseprior"],
       driverNo: ride["driverNo"],
+      driverProfile:ride["driverProfile"],
       driverName: ride["driverName"],
       guardianNo: ride["guardianNo"],
       patientNo: ride["patientNo"],
@@ -273,19 +274,20 @@ const Activerideslist = () => {
           open={state["left"]}
           onClose={toggleDrawer("left", false)}
         >
-          <div className={styles.details}  >
-            
-              <img
-                src={driver_profile}
-                width="200px"
-                height="200px"
-                borderRadius="50%"
-                alt="driver_profile"
-              />
-           
+          <div className={styles.details} style={{paddingRight:"40px"}}  >
+            <img
+              src={
+                rideDetail.pickedBy ? rideDetail.pickedBy.driverL : "Not Available"
+              }
+              width="100%"
+              height="auto"
+              
+              borderRadius="50%"
+              alt="driver_profile"
+            />
           </div>
           <div className={styles.details}>
-            <h2>Paitent Details</h2>
+            <h2>Patient Details</h2>
             <p className={styles.names}>{rideDetail.name}</p>
             <p className={styles.tags}>Age:{rideDetail.age}</p>
             <p className={styles.tags}>Contact:{rideDetail.patientNo}</p>

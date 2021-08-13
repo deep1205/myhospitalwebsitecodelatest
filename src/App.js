@@ -6,7 +6,7 @@ import Footer from "./Components/Footer/Footer.js"
 import Homepage from "../src/Screens/Homepage"
 import Track from "../src/Screens/TrackAmbulance";
 import Pastride from "../src/Screens/Pastride";
-import Profile from "./Screens/Profile";
+import Profile from "../src/Screens/DriverProfile"
 import Login from "../src/Screens/Login";
 import { GuardProvider, GuardedRoute } from "react-router-guards";
 import Signup from "./Screens/Signup"

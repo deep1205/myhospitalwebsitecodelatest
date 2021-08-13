@@ -4,7 +4,7 @@ import DriversList from "../Components/Profile/DriversList";
 import MiniAccounts from "../Components/Profile/MiniAccounts";
 import RequestedDrivers from "../Components/Profile/RequestedDrivers";
 //import { Container, Row, Col } from 'reactstrap';
-import "../css/profile.css"
+import "../css/Profile.css"
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 

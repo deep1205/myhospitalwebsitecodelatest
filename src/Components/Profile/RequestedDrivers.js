@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Profiler } from "react";
-import "../../css/profile.css";
+import "../../css/profile.css"
 
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";

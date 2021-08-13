@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Profiler } from "react";
-import "../../css/Profile.css";
+import "../../css/profile.css";
 
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -87,7 +87,10 @@ const RequestedDrivers = () => {
             <TableBody>
               {reqDrivers.map((driver, id) => (
                 <TableRow key={id}>
-                  <TableCell align="center">{driver.name} </TableCell>
+                  <TableCell align="center">
+                    <img src={driver.driverL} className="responsive" />{" "}
+                    {driver.name}{" "}
+                  </TableCell>
                   <TableCell align="center">{driver.mobileNo}</TableCell>
                   <TableCell align="center">
                     <button

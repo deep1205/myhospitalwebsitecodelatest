@@ -33,10 +33,10 @@ const MiniAccounts = () => {
   }, [accounts]);
 
   //console.log(accounts);
-
   const [email, setEmail] = useState("");
   const [userType, setUserType] = useState("mini");
   const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [showHome, setShowHome] = useState(false);
   const [showTrack, setShowTrack] = useState(false);
   const [showPast, setShowPast] = useState(false);
@@ -54,7 +54,7 @@ const MiniAccounts = () => {
   const data = {
     email: email,
     userType: userType,
-    password: password,
+    password: newPassword,
     showHome: showHome,
     showTrack: showTrack,
     showPast: showPast,
@@ -140,8 +140,21 @@ const MiniAccounts = () => {
   };
 
   const func = (e) => {
-    setEmail(e);
     SetShowPutForm(!showPutForm);
+    console.log(e);
+    setEmail(e.email);
+    setUserType(e.userType);
+    setShowHome(e.showHome);
+    setShowTrack(e.showTrack);
+    setShowPast(e.showPast);
+    setShowProfile(e.showProfile);
+    setShowDriverList(e.showDriverList);
+    setShowDriverListAction(e.showDriverListAction);
+    setShowRequest(e.showRequest);
+    setShowRequestAction(e.showRequestAction);
+    setShowMiniAcco(e.showMiniAcco);
+    setShowMiniAccoActions(e.showMiniAccoActions);
+    setShowMiniAccoDelete(e.showMiniAccoDelete);
   };
 
   return (
@@ -183,7 +196,7 @@ const MiniAccounts = () => {
                       onClick={() => {
                         localStorage.getItem("miniShowMiniAccoActions") ===
                         "true"
-                          ? func(account.email)
+                          ? func(account)
                           : toast.error("Unauthorized to edit account");
                       }}
                     >
@@ -426,8 +439,8 @@ const MiniAccounts = () => {
                       <input
                         style={{}}
                         placeholder="New Password..."
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
                       />
                     </Grid>
                   </Grid>
@@ -454,7 +467,7 @@ const MiniAccounts = () => {
                         <Grid item xs>
                           <input
                             type="checkbox"
-                            value={showHome}
+                            checked={showHome}
                             onChange={(e) => setShowHome(!showHome)}
                           />
                         </Grid>
@@ -466,7 +479,7 @@ const MiniAccounts = () => {
                         <Grid item xs>
                           <input
                             type="checkbox"
-                            value={showTrack}
+                            checked={showTrack}
                             onChange={(e) => setShowTrack(!showTrack)}
                           />
                         </Grid>
@@ -478,7 +491,7 @@ const MiniAccounts = () => {
                         <Grid item xs>
                           <input
                             type="checkbox"
-                            value={showPast}
+                            checked={showPast}
                             onChange={(e) => setShowPast(!showPast)}
                           />
                         </Grid>
@@ -490,7 +503,7 @@ const MiniAccounts = () => {
                         <Grid item xs>
                           <input
                             type="checkbox"
-                            value={showProfile}
+                            checked={showProfile}
                             onChange={(e) => setShowProfile(!showProfile)}
                           />
                         </Grid>
@@ -502,7 +515,7 @@ const MiniAccounts = () => {
                         <Grid item xs>
                           <input
                             type="checkbox"
-                            value={showDriverList}
+                            checked={showDriverList}
                             onChange={(e) => setShowDriverList(!showDriverList)}
                           />
                         </Grid>
@@ -514,7 +527,7 @@ const MiniAccounts = () => {
                         <Grid item xs>
                           <input
                             type="checkbox"
-                            value={showDriverListAction}
+                            checked={showDriverListAction}
                             onChange={(e) =>
                               setShowDriverListAction(!showDriverListAction)
                             }
@@ -528,7 +541,7 @@ const MiniAccounts = () => {
                         <Grid item xs>
                           <input
                             type="checkbox"
-                            value={showRequest}
+                            checked={showRequest}
                             onChange={(e) => setShowRequest(!showRequest)}
                           />
                         </Grid>
@@ -540,7 +553,7 @@ const MiniAccounts = () => {
                         <Grid item xs>
                           <input
                             type="checkbox"
-                            value={showRequestAction}
+                            checked={showRequestAction}
                             onChange={(e) =>
                               setShowRequestAction(!showRequestAction)
                             }
@@ -554,7 +567,7 @@ const MiniAccounts = () => {
                         <Grid item xs>
                           <input
                             type="checkbox"
-                            value={showMiniAcco}
+                            checked={showMiniAcco}
                             onChange={(e) => setShowMiniAcco(!showMiniAcco)}
                           />
                         </Grid>
@@ -566,7 +579,7 @@ const MiniAccounts = () => {
                         <Grid item xs>
                           <input
                             type="checkbox"
-                            value={showMiniAccoActions}
+                            checked={showMiniAccoActions}
                             onChange={(e) =>
                               setShowMiniAccoActions(!showMiniAccoActions)
                             }
@@ -580,7 +593,7 @@ const MiniAccounts = () => {
                         <Grid item xs>
                           <input
                             type="checkbox"
-                            value={showMiniAccoDelete}
+                            checked={showMiniAccoDelete}
                             onChange={(e) =>
                               setShowMiniAccoDelete(!showMiniAccoDelete)
                             }
